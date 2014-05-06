@@ -1,0 +1,26 @@
+{
+  "name": "BlueStem",
+  "version": "0.0.0",
+  "authors": [
+    "Joe <joe@vaguematrix.com>"
+  ],
+  "description": "Galaxy War Game",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "toastr": "~2.0.2",
+    "angular": "~1.2.16",
+    "angular-route": "~1.2.16",
+    "angular-resource": "~1.2.16",
+    "bootstrap": "~3.1.1"
+  }
+}
