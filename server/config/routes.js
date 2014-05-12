@@ -4,6 +4,7 @@
 var auth = require('./auth'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
+    expanses = require('../controllers/expanses'),
     Expanse = mongoose.model('Expanse');
 
 module.exports = function(app) {
@@ -19,6 +20,10 @@ module.exports = function(app) {
             res.send(collection);
         })
     });
+
+    app.get('/api/generateExpanse', expanses.generateExpanse);
+
+    app.post('/api/expanses', expanses.createExpanse);
 
     app.get('/partials/*', function (req, res){
         console.log(req.params);

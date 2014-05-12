@@ -1,0 +1,16 @@
+.panel.panel-primary
+  .panel-heading.text-center Featured Expanses
+  .panel-body
+    .row.text-center.bg-info
+        strong.col-md-1 Status
+        strong.col-md-3 Expanse Name
+        strong.col-md-3 Start Time
+        strong.col-md-2 Round(Max)
+        strong.col-md-3 Width x Height
+    .row.selectable.text-center(ng-repeat="expanse in expanses", ng-click="selectExpanse($index, expanse)", ng-class="{ 'selected': $index == selectedIndex }")
+        .col-md-1 {{expanse.status}}
+        .col-md-3 {{expanse.name}}
+        .col-md-3 {{expanse.beginDate | date:'MM/dd/yy HH:mm'}}
+        .col-md-2 {{expanse.currentRound}}({{expanse.maxRounds}})
+        .col-md-3 {{expanse.width}} x {{expanse.height}}
+

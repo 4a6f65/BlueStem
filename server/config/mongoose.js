@@ -23,6 +23,14 @@ module.exports = function(config) {
         roles: [String]
     });
 
+    var stellarClassSchema = mongoose.Schema({
+        code: String,
+        name: String,
+        color: String,
+        size: String,
+        abundance: Number
+    });
+
     var expanseSchema = mongoose.Schema({
         "name": String,
         "status": String,
@@ -31,9 +39,19 @@ module.exports = function(config) {
         "secondsPerRound": Number,
         "maxRounds": Number,
         "currentRound": Number,
+        "numberOfStars": Number,
         "width": Number,
         "height": Number,
         "depth": Number
+    });
+
+    var starSchema = mongoose.Schema({
+        designation: String,
+        stellarClass: Object,
+        expanseName: String,
+        xCoord: Number,
+        yCoord: Number,
+        zCoord: Number
     });
 
     userSchema.methods = {
@@ -44,17 +62,69 @@ module.exports = function(config) {
 
     var User = mongoose.model('User', userSchema );
     var Expanse = mongoose.model('Expanse', expanseSchema );
+    var Star = mongoose.model('Star', starSchema );
+    var StellarClass = mongoose.model('StellarClass', stellarClassSchema );
+
+
+    StellarClass.find({}).exec(function(err, collection) {
+        if (collection.length === 0) {
+            StellarClass.create({
+                code: "L",
+                name: "Brown Dwarf",
+                size: 2,
+                color: "#FBAF00",
+                abundance: 100
+            });
+            StellarClass.create({
+                code: "M",
+                name: "Red Dwarf",
+                size: 2,
+                color: "#FF0000",
+                abundance: 80
+            });
+            StellarClass.create({
+                code: "G",
+                name: "Yellow Dwarf",
+                size: 3,
+                color: "#FFFF00",
+                abundance: 40
+            });
+            StellarClass.create({
+                code: "B",
+                name: "Blue Giant",
+                size: 5,
+                color: "#1F75FE",
+                abundance: 10
+            });
+            StellarClass.create({
+                code: "V",
+                name: "Singularity",
+                size: 7,
+                color: "#8F00FF",
+                abundance: 2
+            });
+        }
+        console.log("StellarClass Count: " + collection.length);
+    })
+
+    Star.find({}).exec(function(err, collection) {
+        if (collection.length === 0) {
+
+        }
+        console.log("Star Count: " + collection.length);
+    })
 
     Expanse.find({}).exec(function(err, collection) {
         if (collection.length === 0) {
             Expanse.create({
-                "name": "Lloyd",
+                "name": "Yolanda Burwell",
                 "status": "pending",
                 "beginDate": null,
                 "endDate": null,
                 "secondsPerRound": 3600,
                 "maxRounds": 500,
                 "currentRound": 0,
+                "numberOfStars": 1000,
                 "width": 1200,
                 "height": 1200,
                 "depth": 25

@@ -1,0 +1,34 @@
+.panel.panel-primary
+    .panel-body
+        .row
+            h4.col-md-12 The&nbsp;{{selectedExpanse.name}}&nbsp;Expanse
+        .row
+            .col-md-6
+                .col-md-3.col
+                    label Begins:
+                .col-md-9.col
+                    div(ng-controller="mvDatePicker")
+                        quick-datepicker.form-control(ng-model='selectedExpanse.beginDate', label-format="MM/dd/yy HH:mm" )
+                .col-md-3.col
+                    label(for="status") Status:
+                .col-md-9.col
+                    select.form-control(id="status", ng-model="selectedExpanse.status", ng-options="item.Value as item.Name for item in expanseStatusList")
+                .col-md-3.right
+                    label(for="maxRounds") Duration:
+                .col-md-9.col
+                    select.form-control(id="maxRounds", ng-model="selectedExpanse.maxRounds", ng-options="item.Value as item.Name for item in maxRoundList")
+                .col-md-3.right
+                    label(for="mapSize") Size:
+                .col-md-9.col
+                    select.form-control(id="mapSize", ng-model="selectedExpanse.mapSize", ng-options="item.Value as item.Name for item in mapSizeList")
+                .col-md-3.right
+                    label(for="starCount") Star Count:
+                .col-md-9.col
+                    select.form-control(id="starCount", ng-model="selectedExpanse.numberOfStars", ng-options="item.Value as item.Name for item in starCountList")
+                .col-md-12 &nbsp;
+                .col-md-4
+                    button.btn.btn-primary.btn-sm(ng-click="generateNewExpanse") Generate
+                .col-md-4
+                    button.btn.btn-warning.btn-sm(ng-click="acceptNewExpanse") Accept
+            .col-md-6
+                canvas.canvasSpec
