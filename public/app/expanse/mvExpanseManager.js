@@ -1,7 +1,8 @@
 angular.module('app').factory('expanseManager', ['$resource', '$q', 'Expanse', function($resource, $q, Expanse) {
     var Resource = $resource('/api/expanses/:id', {id: '@id'}, {
         'get': {method: 'GET'},
-        'query': {method: 'GET', isArray: true }
+        'query': {method: 'GET', isArray: true },
+        'candidate': {params: {action: 'candidate'}, method: 'GET' }
     });
 
     var expanseManager = {
@@ -28,8 +29,24 @@ angular.module('app').factory('expanseManager', ['$resource', '$q', 'Expanse', f
                 function(expanseData) {
                     var expanse = scope._retrieveInstance(expanseData.id, expanseData);
                     deferred.resolve(expanse);
+                    console.log("_load--success");
                 },function(){
                     deferred.reject();
+                    console.log("_load--fail");
+                });
+        },
+        /* Public Methods */
+        /* generates a candidate expanse for consideration.*/
+        getCandidateExpanse: function(expanseFrame) {
+            var deferred = $q.defer();
+            Resource.candidate( expanseFrame,
+                function(expanseData) {
+                    var expanse = new Expanse(expanseData);
+                    deferred.resolve(expanse);
+                    console.log("getCandidateExpanse--success");
+                },function() {
+                    deferred.reject();
+                    console.log("getCandidateExpanse--fail");
                 });
         },
         /* Public Methods */

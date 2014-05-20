@@ -5,7 +5,7 @@ blueStemApp.controller('mvMainCtrl', function($scope, expanseManager) {
         });
 
     $scope.generateNewExpanse = function(){
-
+        expanseManager.getCandidateExpanse($scope.selectedExpanse);
     }
 
     $scope.acceptNewExpanse = function(){

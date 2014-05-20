@@ -15,10 +15,16 @@ module.exports = function(app) {
         })
     });
 
-    app.get('/api/expanses', function(req, res){
-        Expanse.find({}).exec(function(err, collection){
-            res.send(collection);
-        })
+    app.get('/api/expanses', function(req, res) {
+        if (res.req.query.action === 'candidate') {
+            var candidate = res.req.query;
+            expanses.generateExpanse(req, res, candidate);
+            res.send(candidate);
+        } else {
+            Expanse.find({}).exec(function (err, collection) {
+                res.send(collection);
+            })
+        }
     });
 
     app.get('/api/generateExpanse', expanses.generateExpanse);

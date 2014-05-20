@@ -27,7 +27,7 @@
                     select.form-control(id="starCount", ng-model="selectedExpanse.numberOfStars", ng-options="item.Value as item.Name for item in starCountList")
                 .col-md-12 &nbsp;
                 .col-md-4
-                    button.btn.btn-primary.btn-sm(ng-click="generateNewExpanse") Generate
+                    button.btn.btn-primary.btn-sm(ng-click="generateNewExpanse()") Generate
                 .col-md-4
                     button.btn.btn-warning.btn-sm(ng-click="acceptNewExpanse") Accept
             .col-md-6
